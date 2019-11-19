@@ -1,4 +1,5 @@
 package com.company;
+import java.util.Arrays;
 
 public class Main {
 
@@ -22,5 +23,24 @@ public class Main {
         // Should equal 1 - 1/e, which is .632
         System.out.println(baseExpD.cumulProb(.693));
         // Should be about 0.5
+
+        double[][] SP01to14 = {{1148.08, 0}, {879.82, 14.53}, {1111.92, 20.8}, {1211.92, 20.98}, {1248.29, 23.15},
+                {1418.30, 27.16}, {1468.36, 27.86}, {903.25, 21.85}, {1115.10, 27.19}, {1257.64, 25.44},
+                {1257.60, 26.59}, {1426.19, 32.67}, {1848.36, 39.75}, {2058.9, 42.46}};
+        double[] SP02to14Returns = MathOps.findSumDifferences(SP01to14);
+        System.out.println(Arrays.toString(SP02to14Returns));
+        System.out.println(Variance.mean(SP02to14Returns));
+        System.out.println(Variance.popVarianceEstimate(SP02to14Returns));
+        System.out.println(Variance.popStDevEstimate(SP02to14Returns));
+        System.out.println(Variance.stDevOfPopMeanEstimate(SP02to14Returns));
+        System.out.println(Arrays.toString(Variance.confidenceIntervalPopMeanTwoSigma(SP02to14Returns)));
+
+        double[][] dist = {{0.4, 0.25}, {0.1, 0.5}, {-0.2, 0.25}};
+        System.out.println(Variance.varianceOfWeighted(dist));
+
+        double[] nrets = {.21, .3, .07, -.05, -.02, .09};
+        double[] wrets = {.09, .21, .07, -.02, -.05, .3};
+        System.out.println(MathOps.round(Variance.covarianceEstimate(nrets, wrets),4));
+        System.out.println(MathOps.round(Variance.correlationEstimate(nrets, wrets), 4));
     }
 }
