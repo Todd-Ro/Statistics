@@ -114,6 +114,24 @@ public class Variance {
         double covar = covarianceEstimate(series1, series2);
         double sigma1 = popStDevEstimate(series1);
         double sigma2 = popStDevEstimate(series2);
-        return (covar / (sigma1 * sigma2));
+        return MathOps.round((covar / (sigma1 * sigma2)),15);
+    }
+
+    double[] scaleWeights(double[] weights) {
+        // Fixes weights that do not add up to 1
+        double sum = 0;
+        for (int i = 0; i < weights.length; i++) {
+            sum += weights[i];
+        }
+        if (MathOps.round(sum, 15) != 1.0) {
+            double[] ret = new double[weights.length];
+            for (int i = 0; i < weights.length; i++) {
+                ret[i] = MathOps.round(weights[i] / sum, 16);
+            }
+            return ret;
+        }
+        else {
+            return weights;
+        }
     }
 }

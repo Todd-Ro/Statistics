@@ -43,14 +43,17 @@ public class Main {
 
         double[] nrets = {.21, .3, .07, -.05, -.02, .09};
         double[] wrets = {.09, .21, .07, -.02, -.05, .3};
-        System.out.println(Variance.popStDevEstimate(nrets));
+        System.out.println("nrets underlying st dev: " + Variance.popStDevEstimate(nrets));
         System.out.println(Variance.popStDevEstimate(wrets));
-        System.out.println(Variance.popVarianceEstimate(nrets));
+        System.out.println("nrets underlying variance: " + Variance.popVarianceEstimate(nrets));
         System.out.println(MathOps.round(Variance.covarianceEstimate(nrets, wrets),5));
-        System.out.println(MathOps.round(Variance.correlationEstimate(nrets, wrets), 4));
+        System.out.println("correl of nrets and wrets: " +
+                MathOps.round(Variance.correlationEstimate(nrets, wrets), 4));
         ProbDensityFunction nRetsDist = new ProbDensityFunction(nrets);
         ProbDensityFunction wRetsDist = new ProbDensityFunction(wrets);
-        System.out.println(Math.pow(nRetsDist.findVarianceOfTwoDistSum(wRetsDist, 0.5, 0.5), 0.5));
+        double sumvar = nRetsDist.findVarianceOfTwoDistSum(wRetsDist, 0.5, 0.5);
+        System.out.println("Variance of sum of nrets and wrets: " + sumvar);
+        System.out.println("St Dev of sum of nrets and wrets: " + Math.pow(sumvar, 0.5));
         ProbDensityFunction[] dists = {nRetsDist, wRetsDist};
         double[] halves = {0.5, 0.5};
         System.out.println(Math.pow(ProbDensityFunction.findVarianceOfMultiDistSum(dists, halves),0.5));
@@ -59,5 +62,11 @@ public class Main {
         System.out.println(nRetsDist.findUnderlyingVariance());
         System.out.println(Variance.covarianceEstimate(nRetsDist.getValues(), nRetsDist.getValues()));
         //Covariance of nRetsDist with itself should equal variance
+        double[] combined = ProbDensityFunction.findCombinedValues(dists, halves);
+        System.out.println(Arrays.toString(combined));
+        System.out.println(Variance.correlationEstimate(nrets, combined));
+        System.out.println(Variance.correlationEstimate(wrets, combined));
+        System.out.println(nRetsDist.findStDevContribution(combined, .5));
+         // Should be half of combined st dev
     }
 }
