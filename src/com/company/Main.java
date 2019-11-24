@@ -1,4 +1,6 @@
 package com.company;
+import javafx.print.PageOrientation;
+
 import java.util.Arrays;
 
 public class Main {
@@ -37,10 +39,25 @@ public class Main {
 
         double[][] dist = {{0.4, 0.25}, {0.1, 0.5}, {-0.2, 0.25}};
         System.out.println(Variance.varianceOfWeighted(dist));
+        System.out.println();
 
         double[] nrets = {.21, .3, .07, -.05, -.02, .09};
         double[] wrets = {.09, .21, .07, -.02, -.05, .3};
-        System.out.println(MathOps.round(Variance.covarianceEstimate(nrets, wrets),4));
+        System.out.println(Variance.popStDevEstimate(nrets));
+        System.out.println(Variance.popStDevEstimate(wrets));
+        System.out.println(Variance.popVarianceEstimate(nrets));
+        System.out.println(MathOps.round(Variance.covarianceEstimate(nrets, wrets),5));
         System.out.println(MathOps.round(Variance.correlationEstimate(nrets, wrets), 4));
+        ProbDensityFunction nRetsDist = new ProbDensityFunction(nrets);
+        ProbDensityFunction wRetsDist = new ProbDensityFunction(wrets);
+        System.out.println(Math.pow(nRetsDist.findVarianceOfTwoDistSum(wRetsDist, 0.5, 0.5), 0.5));
+        ProbDensityFunction[] dists = {nRetsDist, wRetsDist};
+        double[] halves = {0.5, 0.5};
+        System.out.println(Math.pow(ProbDensityFunction.findVarianceOfMultiDistSum(dists, halves),0.5));
+        // Should equal previous value
+        System.out.println();
+        System.out.println(nRetsDist.findUnderlyingVariance());
+        System.out.println(Variance.covarianceEstimate(nRetsDist.getValues(), nRetsDist.getValues()));
+        //Covariance of nRetsDist with itself should equal variance
     }
 }

@@ -58,7 +58,7 @@ public class Variance {
         for (int i = 0; i < n; i++) {
             sumSquaredDeviation += Math.pow((series[i] - mu), 2);
         }
-        return (sumSquaredDeviation / ((double) (n - 1)));
+        return MathOps.round((sumSquaredDeviation / ((double) (n - 1))),16);
     }
 
     static double stDev(double[] series) {
@@ -107,7 +107,7 @@ public class Variance {
         for (int i = 0; i <n1; i++) {
             sumDeviationProducts += ( (series1[i]-mu1) * (series2[i] - mu2));
         }
-        return (sumDeviationProducts / (n1 - 1));
+        return MathOps.round((sumDeviationProducts / (n1 - 1)), 16);
     }
 
     static double correlationEstimate(double[] series1, double[] series2) {
