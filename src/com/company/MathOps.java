@@ -26,4 +26,12 @@ public class MathOps {
         }
         return ret;
     }
+
+    public static double[] quadraticSol(double a, double b, double c) {
+        //Returns the two solutions based on the quadratic equation
+        double[] ret = new double[2];
+        ret[0] = (-1*b + Math.pow(Math.pow(b, 2) - 4*a*c, 0.5)  ) / (2*a);
+        ret[1] = (-1*b - Math.pow(Math.pow(b, 2) - 4*a*c, 0.5)  ) / (2*a);
+        return ret;
+    }
 }

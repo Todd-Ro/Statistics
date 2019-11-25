@@ -68,5 +68,10 @@ public class Main {
         System.out.println(Variance.correlationEstimate(wrets, combined));
         System.out.println(nRetsDist.findStDevContribution(combined, .5));
          // Should be half of combined st dev
+
+        System.out.println(Arrays.toString(MathOps.quadraticSol(5, 6, 1)));
+        System.out.println((ProbDensityFunction.findMinVarianceFromSd(.5, .25, 0.0)));
+        System.out.println(ProbDensityFunction.findTangentFromStDev(.5, .25, 0,
+                .26, .06, .03));
     }
 }

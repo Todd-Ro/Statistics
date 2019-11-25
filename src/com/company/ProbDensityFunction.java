@@ -114,5 +114,41 @@ public class ProbDensityFunction /*extends Variance*/ {
         return thisWeight*Variance.popStDevEstimate(this.values)*Variance.correlationEstimate(this.values, sumValues);
     }
 
+    public static double findMinVariance(double var1, double var2, double covar) {
+        /* Returns the two possible weights on the distribution with variance var1, from the quadratic equation,
+           that minimize the variance of the sum. */
+        double a = var1 + var2 - 2*covar;
+        double b = 2 * (covar - var2);
+        return -1*b / (2*a);
+    }
+
+    public static double findMinVarianceFromSd(double sd1, double sd2, double covar) {
+        double var1 = sd1 * sd1;
+        double var2 = sd2 * sd2;
+        return findMinVariance(var1, var2, covar);
+    }
+
+    //TODO: Verify that findTangent works properly when covar is nonzero
+    public static double findTangent(double var1, double var2, double covar,
+                                     double avg1, double avg2, double interOffset) {
+        /*
+        Finds the upper tangent line from the y-intercept at interOffset to the curve showing combinations
+        of average and standard deviation for weighted combinations of the two distributions. Result is given
+        as weight on first distribution.
+         */
+
+        double k = avg1 - avg2;
+        double j = var1 + var2 - 2*covar;
+        double l = 2*(covar - var2);
+        double avg2Adj = avg2 - interOffset;
+        return ((k*var2 - .5*interOffset*l) / (j*interOffset - .5*k*l));
+    }
+
+    public static double findTangentFromStDev(double st1, double st2, double covar,
+                                              double avg1, double avg2, double interOffset) {
+        double var1 = Math.pow(st1, 2);
+        double var2 = Math.pow(st2, 2);
+        return findTangent(var1, var2, covar, avg1, avg2, interOffset);
+    }
 
 }
