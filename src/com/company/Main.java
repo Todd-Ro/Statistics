@@ -73,5 +73,23 @@ public class Main {
         System.out.println((ProbDensityFunction.findMinVarianceFromSd(.5, .25, 0.0)));
         System.out.println(ProbDensityFunction.findTangentFromStDev(.5, .25, 0,
                 .26, .06, .03));
+        System.out.println();
+
+
+        NormalDistribution testDist = new NormalDistribution(0, 3.5);
+        System.out.println(testDist.pointProbIfMuZero(0.15));
+        //System.out.println(testDist.cumulProb(1.1));
+
+        NormalDistribution testDist2 = new NormalDistribution(.4, 1.7);
+        System.out.println(testDist2.pointProb(0.45));
+        System.out.println(testDist2.cumulProb(.45));
+        System.out.println();
+
+        System.out.println(NormalDistribution.standardNormalPDF(1.1));
+        System.out.println(NormalDistribution.standardNormalCDF(1.1));
+        System.out.println(NormalDistribution.standardNormalCDF(-1));
+
+
+
     }
 }

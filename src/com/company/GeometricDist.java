@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 
-public class GeometricDist {
+public class GeometricDist extends ProbDensityFunction {
 
     double p;
     double q;

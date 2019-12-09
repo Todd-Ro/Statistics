@@ -4,15 +4,24 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 
-public class ExponentialDist {
+public class ExponentialDist extends ContinuousProbDensityFunction {
 
     double lambda;
     double beta;
 
 
-    public ExponentialDist(double setLambda) {
-        this.lambda = setLambda;
-        this.beta = 1/setLambda;
+    public ExponentialDist() {
+
+    }
+
+    public ExponentialDist(double initLambda) {
+        this.lambda = initLambda;
+        this.beta = 1/initLambda;
+    }
+
+    public static ExponentialDist exponentialDistFromBeta(double beta) {
+        ExponentialDist newDist = new ExponentialDist(1/beta);
+        return newDist;
     }
 
     public Double pointProb(double x) {
