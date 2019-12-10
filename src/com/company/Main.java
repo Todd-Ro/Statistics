@@ -89,7 +89,11 @@ public class Main {
         System.out.println(NormalDistribution.standardNormalCDF(1.1));
         System.out.println(NormalDistribution.standardNormalCDF(-1));
 
+        System.out.println(ErrorFunction.erf(1.4));
 
+        LognormalDist quarterLog = new LognormalDist(0, 0.25);
+        System.out.println(quarterLog.pointProb(1));
+        System.out.println(quarterLog.cumulProb(1.25));
 
     }
 }

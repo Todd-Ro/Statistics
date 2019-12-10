@@ -1,5 +1,6 @@
 package com.company;
 
+//Consider whether extending ExponentialDist is necessary
 public class NormalDistribution extends ExponentialDist {
 
     double mu;
@@ -10,6 +11,8 @@ public class NormalDistribution extends ExponentialDist {
         this.mu = initmu;
         this.sigma = initsigma;
     }
+
+    public NormalDistribution() {}
 
     public ExponentialDist findCorrespondingExponential() {
         double beta = sigma * Math.sqrt(2*Math.PI);
@@ -23,7 +26,7 @@ public class NormalDistribution extends ExponentialDist {
         return ret;
     }
 
-    private static Double scaledSquare(double v, double mu, double theta) {
+    protected static Double scaledSquare(double v, double mu, double theta) {
         double xForExponential = (Math.pow(v-mu,2) * Math.pow(Math.PI/2.0, 0.5) / theta);
         return xForExponential;
     }

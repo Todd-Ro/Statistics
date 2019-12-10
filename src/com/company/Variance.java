@@ -117,6 +117,7 @@ public class Variance {
         return MathOps.round((covar / (sigma1 * sigma2)),15);
     }
 
+    //Could make method static; could make class such that all methods are static
     double[] scaleWeights(double[] weights) {
         // Fixes weights that do not add up to 1
         double sum = 0;
