@@ -34,4 +34,20 @@ public class MathOps {
         ret[1] = (-1*b - Math.pow(Math.pow(b, 2) - 4*a*c, 0.5)  ) / (2*a);
         return ret;
     }
+
+    public static double findLowestFirstElementInArrays(double[][] checkArray) {
+        int len = checkArray.length;
+        double lowest = checkArray[0][0];
+        if (len == 1) {
+            return lowest;
+        }
+        else {
+            for (int i = 1; i<len; i++) {
+                if (checkArray[i][0] < lowest)
+                    lowest = checkArray[i][0];
+            }
+        }
+        return lowest;
+    }
+
 }

@@ -1,4 +1,5 @@
 package com.company;
+import com.company.randomwalk.TimeToMoneyOut;
 import javafx.print.PageOrientation;
 
 import java.util.Arrays;
@@ -94,6 +95,31 @@ public class Main {
         LognormalDist quarterLog = new LognormalDist(0, 0.25);
         System.out.println(quarterLog.pointProb(1));
         System.out.println(quarterLog.cumulProb(1.25));
+
+        double crPasCh = 244.0 / 495.0;
+
+        TimeToMoneyOut cGame = new TimeToMoneyOut(5, crPasCh);
+        double[][] afterOne = cGame.moneyAfterFirstRound();
+        System.out.println(Arrays.toString(afterOne[0]));
+        System.out.println(Arrays.toString(afterOne[1]));
+        System.out.println();
+        System.out.println(MathOps.round(MathOps.findLowestFirstElementInArrays(afterOne), 13));
+        double[][] afterTwo = cGame.moneyAfterNRounds(2);
+        System.out.println(MathOps.findLowestFirstElementInArrays(afterTwo));
+        System.out.println(Arrays.toString(cGame.nextRow(afterOne)));
+        double[][] afterFour = cGame.moneyAfterNRounds(4);
+        System.out.println(Arrays.toString(afterFour[0]));
+        System.out.println(Arrays.toString(afterFour[1]));
+        System.out.println(Arrays.toString(afterFour[2]));
+        System.out.println(Arrays.toString(afterFour[3]));
+        System.out.println(Arrays.toString(afterFour[4]));
+        double[][] afterNine = cGame.moneyAfterNRounds(9);
+        System.out.println(Arrays.toString(afterNine[3]));
+        System.out.println(Arrays.toString(afterNine[4]));
+        System.out.println(Arrays.toString(afterNine[5]));
+        System.out.println(Arrays.toString(afterNine[6]));
+        System.out.println(Arrays.toString(afterNine[7]));
+
 
     }
 }
