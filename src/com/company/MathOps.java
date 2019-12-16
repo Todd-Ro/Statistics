@@ -1,7 +1,10 @@
 package com.company;
 
+import javafx.util.Pair;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.*;
 
 public class MathOps {
 
@@ -48,6 +51,29 @@ public class MathOps {
             }
         }
         return lowest;
+    }
+
+
+    public static String[] doubleArrayPrint(double[][] printArray) {
+        int len = printArray.length;
+        String[] ret = new String[len];
+        for (int i=0; i<len; i++) {
+            String thisLine = Arrays.toString(printArray[i]);
+            ret[i] = thisLine;
+            System.out.println(thisLine);
+        }
+        return ret;
+    }
+
+    public static ArrayList<Pair<Integer, Double>> sortHashMap(HashMap<Integer, Double> toSort) {
+        //Sorts pairs by first value in pair
+        ArrayList<Pair<Integer, Double>> sorting = new ArrayList<Pair<Integer, Double>>();
+        for (Map.Entry<Integer, Double> entry : toSort.entrySet()) {
+            Pair<Integer, Double> p = new Pair(entry.getKey(), entry.getValue());
+            sorting.add(p);
+        }
+        Collections.sort(sorting, new SortByIntegerInPair());
+        return sorting;
     }
 
 }

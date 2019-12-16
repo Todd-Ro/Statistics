@@ -95,6 +95,7 @@ public class Main {
         LognormalDist quarterLog = new LognormalDist(0, 0.25);
         System.out.println(quarterLog.pointProb(1));
         System.out.println(quarterLog.cumulProb(1.25));
+        System.out.println();
 
         double crPasCh = 244.0 / 495.0;
 
@@ -103,23 +104,33 @@ public class Main {
         System.out.println(Arrays.toString(afterOne[0]));
         System.out.println(Arrays.toString(afterOne[1]));
         System.out.println();
+
         System.out.println(MathOps.round(MathOps.findLowestFirstElementInArrays(afterOne), 13));
         double[][] afterTwo = cGame.moneyAfterNRounds(2);
         System.out.println(MathOps.findLowestFirstElementInArrays(afterTwo));
         System.out.println(Arrays.toString(cGame.nextRow(afterOne)));
+        System.out.println();
         double[][] afterFour = cGame.moneyAfterNRounds(4);
-        System.out.println(Arrays.toString(afterFour[0]));
-        System.out.println(Arrays.toString(afterFour[1]));
-        System.out.println(Arrays.toString(afterFour[2]));
-        System.out.println(Arrays.toString(afterFour[3]));
-        System.out.println(Arrays.toString(afterFour[4]));
-        double[][] afterNine = cGame.moneyAfterNRounds(9);
-        System.out.println(Arrays.toString(afterNine[3]));
-        System.out.println(Arrays.toString(afterNine[4]));
-        System.out.println(Arrays.toString(afterNine[5]));
-        System.out.println(Arrays.toString(afterNine[6]));
-        System.out.println(Arrays.toString(afterNine[7]));
+        MathOps.doubleArrayPrint(afterFour);
+        System.out.println();
+        double[][] afterFive = cGame.moneyAfterNRounds(5);
+        MathOps.doubleArrayPrint(afterFive);
+        System.out.println();
+        double[][] afterSix = cGame.moneyAfterNRounds(6);
+        MathOps.doubleArrayPrint(afterSix);
+        System.out.println();
+        double[][] afterSeven = cGame.moneyAfterNRounds(7);
+        MathOps.doubleArrayPrint(afterSeven);
+        System.out.println();
 
+
+
+        System.out.println(Arrays.asList(cGame.getProbZeroOutTable()));
+        System.out.println(Arrays.asList(cGame.getToSpecifiedZeroProb(.975)));
+        /*Results indicate that a gambler who starts with 5 money, with slightly less than even odds, will run out of
+        money after an odd number of rounds between 5 and 63 (two-sided 95% probability (not confidence) interval)
+         */
+        System.out.println(cGame.findMedian());
 
     }
 }
