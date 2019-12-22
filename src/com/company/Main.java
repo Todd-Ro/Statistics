@@ -129,8 +129,35 @@ public class Main {
         System.out.println(Arrays.asList(cGame.getToSpecifiedZeroProb(.975)));
         /*Results indicate that a gambler who starts with 5 money, with slightly less than even odds, will run out of
         money after an odd number of rounds between 5 and 63 (two-sided 95% probability (not confidence) interval)
-         */
+        Median is 25.*/
         System.out.println(cGame.findMedian());
+        System.out.println(1/(1-2*crPasCh));
+        System.out.println();
+
+        int [][] gambleTimes = TimeToMoneyOut.findMedians(crPasCh, 1, 10);
+        for (int i = 0; i<10; i++) {
+            double ratio = (double)gambleTimes[i][1] / (double)gambleTimes[i][0];
+            System.out.println(Arrays.toString(gambleTimes[i]) + " " + (ratio));
+        }
+        /* The median time until the gambler runs out of money bears some relationship to the expected value of that time
+        The medidan tends to be less than the expected value, since the values below the median are less spread out
+        than the ones above, even though both the values below and above the median may be skewed toward lower values.
+        The expected value is related to the inverse of double the difference between .5 and the probability of winning.
+        Starting money divided by this double difference.
+         */
+
+        /*int [][] gambleTimes2 = TimeToMoneyOut.findMedians(crPasCh, 99, 101);
+        for (int i = 0; i<3; i++) {
+            double ratio = (double)gambleTimes2[i][1] / (double)gambleTimes2[i][0];
+            System.out.println(Arrays.toString(gambleTimes2[i]) + " " + (ratio));
+        }*/
+
+        /*int [][] gambleTimes3 = TimeToMoneyOut.findMedians(crPasCh, 374, 376);
+        for (int i = 0; i<3; i++) {
+            double ratio = (double)gambleTimes3[i][1] / (double)gambleTimes3[i][0];
+            System.out.println(Arrays.toString(gambleTimes3[i]) + " " + (ratio));
+        }*/
+
 
     }
 }

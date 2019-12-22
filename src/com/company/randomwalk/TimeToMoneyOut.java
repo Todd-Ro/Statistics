@@ -143,6 +143,19 @@ public class TimeToMoneyOut {
         return sortedZeroOutTable.get((sortedZeroOutTable.size() - 1)).getKey();
     }
 
+    public static int[][] findMedians(double p, int start, int finish) {
+        /*Produces the median time until running out of money, given a particular probability, for every starting money
+        amount in a range. May tax computing resources if large start/finish numbers are used.
+         */
+        int[][] ret = new int[finish - start + 1][2];
+        for (int i = start; i <= finish; i++) {
+            TimeToMoneyOut thisGambler = new TimeToMoneyOut(i, p);
+            ret[i - start][0] = i;
+            ret[i - start][1] = thisGambler.findMedian();
+        }
+        return ret;
+    }
+
 
 
 
