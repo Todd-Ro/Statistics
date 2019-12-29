@@ -1,8 +1,10 @@
 package com.company;
 import com.company.randomwalk.TimeToMoneyOut;
 import javafx.print.PageOrientation;
+import javafx.util.Pair;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Main {
 
@@ -97,7 +99,7 @@ public class Main {
         System.out.println(quarterLog.cumulProb(1.25));
         System.out.println();
 
-        double crPasCh = 244.0 / 495.0;
+        double crPasCh = 244.0 / 495.0; // 49.292929%; Half of 495 is 247.5
 
         TimeToMoneyOut cGame = new TimeToMoneyOut(5, crPasCh);
         double[][] afterOne = cGame.moneyAfterFirstRound();
@@ -146,6 +148,7 @@ public class Main {
         Starting money divided by this double difference.
          */
 
+        //Commented out because of computing time used
         /*int [][] gambleTimes2 = TimeToMoneyOut.findMedians(crPasCh, 99, 101);
         for (int i = 0; i<3; i++) {
             double ratio = (double)gambleTimes2[i][1] / (double)gambleTimes2[i][0];
@@ -157,6 +160,18 @@ public class Main {
             double ratio = (double)gambleTimes3[i][1] / (double)gambleTimes3[i][0];
             System.out.println(Arrays.toString(gambleTimes3[i]) + " " + (ratio));
         }*/
+
+        System.out.println();
+        System.out.println(MathOps.greatestCommonFactor(100, 110));
+
+        Pair<Integer, Integer> twoFifths = MathOps.reduceFrac(24, 60);
+        System.out.println(twoFifths.getKey() + ", " + twoFifths.getValue());
+
+        Die firstD6 = new Die(1, 6, 1);
+        Die secondD6 = new Die(1, 6, 1);
+
+        HashMap h = Die.sumDice(firstD6, secondD6);
+        System.out.println(h.entrySet());
 
 
     }

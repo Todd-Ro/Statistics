@@ -83,7 +83,10 @@ public class ProbDensityFunction /*extends Variance*/ {
     public static double[] findCombinedValues(ProbDensityFunction[] dists, double[] weights) {
         /* Finds the weighted sum of two ProbDensityFunctions with equal numbers of entries in values.
         Assumes that the density at each possible value within each distribution is equal, but allows each
-        distribution to be assigned a different weight in the sum.*/
+        distribution to be assigned a different weight in the sum.
+
+        Assumes that the entries in the two series are paired; each entry is added (by weight) with the corresponding
+        entry in the other series.*/
         if (dists.length != weights.length) {
             throw new IllegalArgumentException("dists and weights must have equal lengths");
         }
@@ -154,5 +157,7 @@ public class ProbDensityFunction /*extends Variance*/ {
         double var2 = Math.pow(st2, 2);
         return findTangent(var1, var2, covar, avg1, avg2, interOffset);
     }
+
+
 
 }

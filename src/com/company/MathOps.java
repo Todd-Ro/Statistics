@@ -76,4 +76,37 @@ public class MathOps {
         return sorting;
     }
 
+    public static int greatestCommonFactor (int in1, int in2) {
+        int smaller = Math.abs(in1);
+        if (Math.abs(in2) < Math.abs(in1)) {
+            smaller = in2;
+        }
+        int i = 1;
+        int gcf = 1;
+        while (i <= smaller) {
+            if (in1 % i == 0) {
+                if (in2 % i == 0) {
+                    gcf = i;
+                }
+            }
+            i++;
+        }
+        return gcf;
+    }
+
+    public static int[] reduceFraction(int numerator, int denominator) {
+        //returns numerator, then denominator of reduced fraction
+        int gcf = greatestCommonFactor(numerator, denominator);
+        int[] ret = {numerator/gcf, denominator/gcf};
+        return ret;
+    }
+
+    public static Pair<Integer, Integer> reduceFrac(int numerator, int denominator) {
+        int[] frac = reduceFraction(numerator, denominator);
+        Pair<Integer, Integer> ret = new Pair<Integer, Integer> (frac[0], frac[1]);
+        return ret;
+    }
+
+
+
 }
