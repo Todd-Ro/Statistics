@@ -107,6 +107,33 @@ public class MathOps {
         return ret;
     }
 
+    public static Pair<Integer, Integer> fracAdd(Pair<Integer, Integer> frac1, Pair<Integer, Integer> frac2) {
+        //Adds two fractions
+        int num1 = frac1.getKey();
+        int denom1 = frac1.getValue();
+        int num2 = frac2.getKey();
+        int denom2 = frac2.getValue();
+        int sumDenom = denom1*denom2;
+        int sumNum = num1*denom2 + num2*denom1;
+        return reduceFrac(sumNum, sumDenom);
+    }
+
+    public static int findLCM (int[] theseInts) {
+        //Returns the lowest number that is an integer multiple of any integer in the input
+        int lcm = theseInts[0];
+        for (int thisInt : theseInts) {
+            if (lcm % thisInt == 0) {
+                continue;
+            }
+            else {
+                lcm = lcm*thisInt / greatestCommonFactor(lcm, thisInt);
+            }
+        }
+        return lcm;
+    }
+
+
+
 
 
 }

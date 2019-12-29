@@ -172,6 +172,15 @@ public class Main {
 
         HashMap h = Die.sumDice(firstD6, secondD6);
         System.out.println(h.entrySet());
+        Die thirdD6 = new Die(1, 6, 1);
+        HashMap h2 = Die.addDieToSum(thirdD6, h);
+        System.out.println(h2.entrySet());
+
+
+
+        System.out.println();
+        int[] divisors = new int[] {6, 10, 15};
+        System.out.println(MathOps.findLCM(divisors));
 
 
     }

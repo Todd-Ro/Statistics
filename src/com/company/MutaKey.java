@@ -17,7 +17,11 @@ public class MutaKey {
 
     public MutaKey(int x) {
         this.x = x;
-        this.y = 1;
+        if (this.y > 0) {
+        } //Intended to retain old y value if present
+        else {
+            this.y = 1;
+        }
     }
 
     @Override
