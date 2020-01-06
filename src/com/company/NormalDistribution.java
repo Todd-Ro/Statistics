@@ -21,7 +21,7 @@ public class NormalDistribution extends ExponentialDist {
         return adjustedDist;
     }
 
-    public NormalDistribution normalDistributionFromVariance(double initmu, double initvariance) {
+    public static NormalDistribution normalDistributionFromVariance(double initmu, double initvariance) {
         NormalDistribution ret = new NormalDistribution(initmu, Math.sqrt(initvariance));
         return ret;
     }
@@ -73,5 +73,27 @@ public class NormalDistribution extends ExponentialDist {
     }
 
 
+    public static double inverseStandardNormalCDF(double p) {
+        //Uses John D. Cook's method based on the Abromowitz & Stegun approximation
+        if (p < 0.5)
+        {
+            // F^-1(p) = - G^-1(p)
+            return MathOps.round(-RationalApproximation( Math.sqrt(-2.0*Math.log(p)) ), 3);
+        }
+        else
+        {
+            // F^-1(p) = G^-1(1-p)
+            return MathOps.round(RationalApproximation( Math.sqrt(-2.0*Math.log(1-p))), 3);
+        }
+    }
+
+
+
+    protected static double RationalApproximation(double t) {
+        final double c[] = {2.515517, 0.802853, 0.010328};
+        final double d[] = {1.432788, 0.189269, 0.001308};
+        return t - ((c[2]*t + c[1])*t + c[0]) /
+                (((d[2]*t + d[1])*t + d[0])*t + 1.0);
+    }
 
 }

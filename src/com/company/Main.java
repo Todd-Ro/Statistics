@@ -99,6 +99,11 @@ public class Main {
         System.out.println(quarterLog.cumulProb(1.25));
         System.out.println();
 
+        System.out.println(NormalDistribution.inverseStandardNormalCDF(.975));
+        System.out.println();
+        System.out.println();
+
+
         double crPasCh = 244.0 / 495.0; // 49.292929%; Half of 495 is 247.5
 
         TimeToMoneyOut cGame = new TimeToMoneyOut(5, crPasCh);
